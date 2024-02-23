@@ -18,7 +18,7 @@ const getLatestEpisode = async (showId: string): Promise<SimplifiedEpisode | nul
 export const getLatestNewsEpisode = async (showId: string): Promise<SimplifiedEpisode | null> => {
   const latestEpisode = await getLatestEpisode(showId)
 
-  if (latestEpisode?.release_date === DateTime.now().toISODate()) {
+  if (latestEpisode?.release_date === DateTime.now().toISODate() && !latestEpisode.resume_point.fully_played) {
     return latestEpisode
   }
   return null
