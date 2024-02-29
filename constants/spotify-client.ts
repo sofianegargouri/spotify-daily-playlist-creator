@@ -16,7 +16,7 @@ if (file.size) {
     client_id: clientId
   }
 } else {
-  const scope = 'playlist-modify-private playlist-read-private user-read-playback-position'
+  const scope = 'playlist-modify-private playlist-read-private user-read-playback-position playlist-modify-public'
   const authUrl = new URL('https://accounts.spotify.com/authorize')
 
   const generateRandomString = (length: number): string => {

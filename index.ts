@@ -3,8 +3,11 @@ import { clearPlaylist, getLatestNewsEpisode, getLatestShowEpisode, getRandomPla
 import { compact, flatten, map } from 'lodash'
 import {favoriteShows, newsChannels, musicPlaylists, playlistId} from './config.json'
 
+console.info('Clearing playlist')
 await clearPlaylist(playlistId)
+console.info('Playlist cleared')
 
+console.info('Building tracklist')
 const tracks = await Promise.all(flatten([
   ...map(favoriteShows, async favoriteShow => await getLatestShowEpisode(favoriteShow)),
   ...map(newsChannels, newsChannel => ([
@@ -12,5 +15,8 @@ const tracks = await Promise.all(flatten([
     ...map(musicPlaylists, async playlist => await getRandomPlaylistItem(playlist))
   ]))
 ]))
+console.info('Tracklist built')
 
+console.info('Saving into the playlist')
 await spotifyClient.playlists.addItemsToPlaylist(playlistId, compact(map(tracks, 'uri')))
+console.info('Saved')
