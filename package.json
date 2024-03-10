@@ -1,29 +1,32 @@
 {
-  "dependencies": {
-    "@spotify/web-api-ts-sdk": "^1.2.0",
-    "lodash": "^4.17.21",
-    "luxon": "^3.4.4",
-    "query-string": "^8.2.0"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/lodash": "^4.14.202",
-    "@types/luxon": "^3.4.2",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "eslint": "^8.0.1",
-    "eslint-config-standard-with-typescript": "^43.0.1",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
-    "eslint-plugin-promise": "^6.0.0",
-    "typescript": "*"
-  },
-  "module": "index.ts",
-  "name": "spotify-playlist-creator",
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
+  "name": "vite-template-solid",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
   "scripts": {
-    "lint:fix": "eslint --ext .ts . --fix"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
-  "type": "module"
+  "license": "MIT",
+  "devDependencies": {
+    "prisma": "^5.10.2",
+    "solid-devtools": "^0.29.2",
+    "typescript": "^5.3.3",
+    "vercel": "^33.5.5",
+    "vite": "^5.0.11",
+    "vite-plugin-solid": "^2.8.2"
+  },
+  "dependencies": {
+    "@prisma/client": "5.10.2",
+    "@spotify/web-api-ts-sdk": "^1.2.0",
+    "@vercel/postgres": "^0.7.2",
+    "axios": "^1.6.7",
+    "js-sha256": "^0.11.0",
+    "solid-js": "^1.8.11"
+  },
+  "prisma": {
+    "schema": "api/prisma/schema.prisma"
+  }
 }
