@@ -1,0 +1,56 @@
+playlist_id: XXXXXXXXXXX
+
+content:
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX
+- type: loop
+  through:
+  - type: today_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: today_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: today_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/XXXXXXXXXXX
+  value:
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+  - type: random_track
+    value: https://open.spotify.com/playlist/XXXXXXXXXXX
+- type: newest_unlistened_episode
+  value:
+  - https://open.spotify.com/show/XXXXXXXXXXX
+  - https://open.spotify.com/show/XXXXXXXXXXX
+- type: newest_unlistened_episode
+  value: https://open.spotify.com/show/XXXXXXXXXXX

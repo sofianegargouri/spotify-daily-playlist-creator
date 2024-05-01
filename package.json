@@ -1,12 +1,15 @@
 {
   "dependencies": {
     "@spotify/web-api-ts-sdk": "^1.2.0",
+    "humps": "^2.0.1",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
-    "query-string": "^8.2.0"
+    "query-string": "^8.2.0",
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/humps": "^2.0.6",
     "@types/lodash": "^4.14.202",
     "@types/luxon": "^3.4.2",
     "@typescript-eslint/eslint-plugin": "^6.4.0",

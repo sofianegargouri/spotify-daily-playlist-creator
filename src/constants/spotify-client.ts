@@ -1,12 +1,12 @@
 import { SpotifyApi, type AccessToken } from '@spotify/web-api-ts-sdk'
 import queryString from 'query-string'
 
-const clientId = process.env.SPOTIFY_CLIENT_ID as string
-const redirectUri = process.env.SPOTIFY_REDIRECT_URI as string
+const clientId = process.env.SPOTIFY_CLIENT_ID!
+const redirectUri = process.env.SPOTIFY_REDIRECT_URI!
 
 let body
 
-const file = await Bun.file(import.meta.dir+'/../.credentials')
+const file = await Bun.file(import.meta.dir + '/../.credentials')
 if (file.size) {
   const json = await file.text()
   const parsedJson = JSON.parse(json)
@@ -54,7 +54,7 @@ if (file.size) {
 
   authUrl.search = new URLSearchParams(params).toString()
 
-  console.log(authUrl.toString())
+  console.info(authUrl.toString())
 
   const redirectedUri = prompt('Paste the redirect URI: ') ?? ''
 
@@ -79,7 +79,7 @@ const payload = {
 const response = await fetch('https://accounts.spotify.com/api/token', payload)
 const token = await response.json() as AccessToken
 
-await Bun.write(import.meta.dir+'/../.credentials', JSON.stringify(token))
+await Bun.write(import.meta.dir + '/../.credentials', JSON.stringify(token))
 
 export default SpotifyApi.withAccessToken(
   clientId,

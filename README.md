@@ -13,21 +13,58 @@ bun install
 cp .env.example.env
 
 # Setup your own config.json with your own playlist IDs
-cp config.example.json config.json
+cp config.example.yml config.yml
 
 # Run your script
 bun run index.ts
 ```
 
-## Filling the configuration file
+## Configuration
 
-The configuration file must be named `config.json`. It contains 4 elements:
+The configuration file must be named `config.yml`. It works as follows:
 
-- `favoriteShows: string[]`: Your favorite podcasts. The lateste episode will be at the top of the playlist until you listen to them
-- `musicPlaylists: string[]`: Playlists to get musics from between podcasts
-- `newsChannels: string[]`: You news podcasts. Only the current day's episode will be fetched
-- `playlistId: string`: The playlist you manually created in Spotify
+```yaml
+playlist_id: THE_PLAYLIST_ID_TO_UPDATE
 
-Those fields are expecting IDs from Spotify. You can get them by clicking "Share" > "Copy Link" in Spotify.
+content:
+# Will get the latest episode if it has not been listened yet
+# Podcasts only
+- type: latest_unlistened_episode
+  value: https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+# Or if you want the latest between multiple shows
+- type: latest_unlistened_episode
+  value:
+  - https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+  - https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
 
-The link will look something like this: `https://open.spotify.com/show/4xQ0IUSsrfs6pltTnwr3Kk?si=46bf191956ef4ca6`. You must take only the `4xQ0IUSsrfs6pltTnwr3Kk` part.
+# Will get the episode released on the current date if it has not been listened yet
+# Podcasts only
+- type: today_episode
+  value: https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+
+# Will get a random track from a playlist
+# Playlists only
+- type: random_track
+  value: https://open.spotify.com/playlist/xxxxxxxxxxxxxxxxxxxxxx
+
+# Will get the newest episode that has not been listened yet
+# Podcasts only
+- type: newest_unlistened_episode
+  value: https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+# Or if you want the newest between multiple shows
+- type: newest_unlistened_episode
+  value:
+  - https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+  - https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+
+# Will loop through the elements in the `through` key and append the ones in `value`
+- type: loop
+  through:
+  - type: today_episode
+    value: https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+  - type: latest_unlistened_episode
+    value: https://open.spotify.com/show/xxxxxxxxxxxxxxxxxxxxxx
+  value:
+  - type: random_track
+    value: https://open.spotify.com/playlist/xxxxxxxxxxxxxxxxxxxxxx
+```
