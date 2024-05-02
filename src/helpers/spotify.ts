@@ -107,5 +107,5 @@ export const clearPlaylist = async (playlistId: string): Promise<void> => {
     { tracks: items.items.map(item => ({ uri: item.track.uri })) }
   )
 
-  if (items.next) { clearPlaylist(playlistId) }
+  if (items.next) { await clearPlaylist(playlistId) }
 }
