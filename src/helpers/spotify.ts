@@ -106,4 +106,6 @@ export const clearPlaylist = async (playlistId: string): Promise<void> => {
     playlistId,
     { tracks: items.items.map(item => ({ uri: item.track.uri })) }
   )
+
+  if (items.next) { clearPlaylist(playlistId) }
 }
