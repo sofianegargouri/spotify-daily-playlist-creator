@@ -102,10 +102,12 @@ export const getRandomPlaylistItem = async (spotifyUri: string): Promise<Track |
 export const clearPlaylist = async (playlistId: string): Promise<void> => {
   const items = await spotifyClient.playlists.getPlaylistItems(playlistId, undefined, undefined, 50)
 
-  await spotifyClient.playlists.removeItemsFromPlaylist(
-    playlistId,
-    { tracks: items.items.map(item => ({ uri: item.track.uri })) }
-  )
+  if (items.total > 0) {
+    await spotifyClient.playlists.removeItemsFromPlaylist(
+      playlistId,
+      { tracks: items.items.map(item => ({ uri: item.track.uri })) }
+    )
 
-  if (items.next) { await clearPlaylist(playlistId) }
+    if (items.next) { await clearPlaylist(playlistId) }
+  }
 }
