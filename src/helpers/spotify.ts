@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import spotifyClient from '../constants/spotify-client'
-import { find, flatten, get, head, isArray, map, reverse, sample, sortBy } from 'lodash'
+import { filter, find, flatten, get, head, isArray, isEmpty, map, reverse, sample, sortBy } from 'lodash'
 import type { PlaylistedTrack, SimplifiedEpisode, Track } from '@spotify/web-api-ts-sdk'
 
 interface ParsedSpotifyUri {
@@ -103,10 +103,21 @@ export const clearPlaylist = async (playlistId: string): Promise<void> => {
   const items = await spotifyClient.playlists.getPlaylistItems(playlistId, undefined, undefined, 50)
 
   if (items.total > 0) {
-    await spotifyClient.playlists.removeItemsFromPlaylist(
-      playlistId,
-      { tracks: items.items.map(item => ({ uri: item.track.uri })) }
+
+    const tracks = filter(
+      map(items.items, item => ({ uri: item.track?.uri })),
+      item => !!item.uri
     )
+
+    if (!isEmpty(tracks)) {
+      await spotifyClient.playlists.removeItemsFromPlaylist(
+        playlistId,
+        { tracks: filter(
+          map(items.items, item => ({ uri: item.track?.uri })),
+          item => !!item.uri
+        ) }
+      )
+    }
 
     if (items.next) { await clearPlaylist(playlistId) }
   }
